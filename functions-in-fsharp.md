@@ -12,7 +12,7 @@ val add: x: int -> y: int -> int
 ```
 What this is saying is that `add` is a function that takes an `int x` and returns a function that takes `int y` and returns an `int`.  Think of each arrow (`->`) as a function that takes the parameter from the left and returns the value to the right.  This is called [Currying](https://en.wikipedia.org/wiki/Currying), which is apparently named after the guy who invented Haskell.
 
-Therefore, we can pass an integer, say `5`, to the function `add`, and it will return another function which will take an interger, add it to `5`, and then return the result.  If we name that new function `add5`, we can define it as follows:
+Therefore, we can pass an integer, say `5`, to the function `add`, and it will return another function which will take an interger `y`, add it to `5`, and then return the result.  If we name that new function `add5`, we can define it as follows:
 ```
 > let add5 = add 5;;
 ```
@@ -43,3 +43,15 @@ val it: int = 11
 val it: int = 30
 ```
 Unsurprisingly, this concept is called [Partial Application](https://en.wikipedia.org/wiki/Partial_application).
+
+**Update on 08 March 2026**:
+
+I didn't want my post to imply that you can't pass two or more arguments to a function.  You certainly can:
+```
+> let add a b = a + b;;
+val add: a: int -> b: int -> int
+
+> add 4 9;;
+val it: int = 13
+```
+In my very limited experience with F# so far, I don't worry too much about currying; when I see a type signature that looks like `val add: a: int -> b: int -> int`, I'm still thinking about it as a function that takes two integers and returns one integer.
