@@ -8,8 +8,11 @@ Here's a simple example.  Suppose we define a function `applyFunction` as follow
 val applyFunction: funct: ('a -> 'b -> 'c) -> a: 'a -> b: 'b -> 'c
 ```
 In this example, `applyFunction` takes three arguments:
+
 1. A function `funct` that takes two generic arguments and returns a generic value.
+
 2. A generic argument `'a`.
+
 3. A generic argument `'b`.
 
 It then applies the function `funct` to `'a` and `'b`, returning the generic value `'c`.
@@ -50,3 +53,78 @@ val it: int = 7
 Here, we're combining the concepts of anonymous functions with partial applcation.  Instead of passing a defined function, such as `add` to `applyFunction`, we're passing anonymous function `fun x y -> x + y`.  This works because the anonymous function has the same type signature expected by `applyFunction`: `'a -> 'b -> 'c`.
 
 For a more practical example of how all of this comes together, let's take a look at Exercise 7.1 in "[F# in Action](https://www.manning.com/books/f-sharp-in-action)" which has us build a simple calculator.
+
+Let's define a new function, `calculate`, similar to `applyFunction`:
+```
+> let calculate operation x y = operation x y;;
+val calculate: operation: ('a -> 'b -> 'c) -> x: 'a -> y: 'b -> 'c
+```
+
+Because `calculate` is a higher-order function, we can pass to it various other anonymous functions that represent basic mathematical operations:
+```
+> calculate (fun a b -> a + b) 2 3;;
+val it: int = 5
+
+> calculate (fun a b -> a - b) 10 8;;
+val it: int = 2
+```
+We can get a little bit fancier by passing both an operation as well as a description of the action we are taking as a tuple so that we can return a string that describes what we are doing:
+```
+> let calculate (operation, action) x y =                   
+-     let answer = operation x y                            
+-     sprintf $"%i{x} %s{action} %i{y} equals %i{answer}";; 
+val calculate:
+  operation: (int -> int -> int) * action: string ->
+    x: int -> y: int -> string
+```
+We can then call `calculate` as follows:
+```
+> let result = calculate (( fun x y -> x / y ), "divided by") 10 2;;
+val result: string = "10 divided by 2 equals 5"
+```
+Putting this all together, we can create a simple `calculate.fsx` script:
+```
+let calculate (operation, action) x y =
+    let answer = operation x y
+    sprintf $"%i{x} {action} %i{y} equals %i{answer}"
+
+printfn "Enter the first number: "
+let x = System.Console.ReadLine() |> int
+printfn "Enter the second number: "
+let y = System.Console.ReadLine() |> int
+
+printfn "Enter an operation:"
+printfn "    1. Add"
+printfn "    2. Multiply"
+printfn "    3. Subtract"
+printfn "    4. Divide"
+printfn "Enter your choice: "
+let choice = System.Console.ReadLine()
+
+let operation =
+    match choice with
+    | "1" -> ((fun a b -> a + b), "plus")
+    | "2" -> ((fun a b -> a * b), "multiplied by")
+    | "3" -> ((fun a b -> a - b), "minus")
+    | "4" -> ((fun a b -> a / b), "divided by")
+    | _ -> failwith "Invalid choice"
+
+let result = calculate operation x y
+printfn "%s" result
+```
+which we can run via `dotnet fsi calculate.fsx`:
+```
+Enter the first number: 
+10
+Enter the second number: 
+5
+Enter an operation:
+    1. Add
+    2. Multiply
+    3. Subtract
+    4. Divide
+Enter your choice: 
+2
+10 multiplied by 5 equals 50
+```
+Hopefully this example helps explain a bit more about what higher-order and anonymous functions are in F# and how they can be used in a simple example.

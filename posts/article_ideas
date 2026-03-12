@@ -1,0 +1,15 @@
+- some/none versus ok/error
+  https://chat.qwen.ai/s/bf51c13b-38ed-4d79-ac41-5d48deb761ec?fev=0.2.12
+  https://chatgpt.com/share/69b2a895-c290-800c-b764-af6eb0c02d7a
+
+- record versus union types
+  https://chat.qwen.ai/s/4f4f5267-afc9-44fb-a11e-9e5baa327dc2?fev=0.2.12
+  https://chat.deepseek.com/share/ncdfhg5xp018cxzzc1
+  /home/samir/Documents/programming/fsharp/types3.fsx
+
+- dates and sequences and how sequences are lazily evaluated
+  /home/samir/Documents/programming/fsharp/dates and sequences
+  /home/samir/Documents/programming/fsharp/fsharpInAction/findMondays.fsx
+
+- Seq.fold
+  /home/samir/Documents/programming/fsharpfsharpInAction/seqFoldExample.fsx
