@@ -13,3 +13,6 @@
 
 - Seq.fold
   /home/samir/Documents/programming/fsharpfsharpInAction/seqFoldExample.fsx
+
+- Find team with most goals scored
+  /home/samir/Documents/programming/fsharpfsharpInAction/chapter7.fsx
