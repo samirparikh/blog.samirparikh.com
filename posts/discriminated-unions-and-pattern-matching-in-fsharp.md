@@ -147,7 +147,7 @@ Therefore, we can augment our `describe` function with a pattern to map to `Valu
 -     | King suit -> $"King of %A{suit}"
 -     | Queen suit -> $"Queen of %A{suit}"
 -     | Jack suit -> $"Jack of %A{suit}"
--     | ValueCard (value, suit) -> $"{value} of %A{suit}";;
+-     | ValueCard (value, suit) -> $"{value} of %A{suit}";; // note the tuple
 val describe: card: PlayingCard -> string
 
 > describe deckOfCards[4];;
