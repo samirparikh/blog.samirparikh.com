@@ -7,7 +7,7 @@ updated:
 tags: [F#]
 ---
 
-I'm starting to kick the tires on [discriminated unions](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions) and pattern matching as I continue to learn about F#.  While not exactly the same thing, they are kind of like C#'s [enumeration types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) where a type can have only possible value.  That value is called a union case.  Using playing cards as an example, we can define the type `Suit`:
+I'm starting to kick the tires on [discriminated unions](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions) and pattern matching as I continue to learn about F#.  While not exactly the same thing, they are kind of like C#'s [enumeration types](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) where a type can have only one possible value.  That value is called a union case.  Using playing cards as an example, we can define the type `Suit`:
 ```
 > type Suit =
 -     | Heart
